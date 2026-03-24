@@ -1,0 +1,3 @@
+[submodule "frontend-pixels-war"]
+	path = frontend-pixels-war
+	url = https://github.com/ue22-p25/frontend-pixels-war.git
