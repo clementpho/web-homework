@@ -16,34 +16,17 @@ body {
     :first-child > input {
         width: 40ex;
     }
+
 }
 
 #grid {
     display: grid;
-    width: 90vw; /* Utilise plus d'espace */
-    max-width: 800px; /* Optionnel : limite la taille max */
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    /* Suppression du gap pour que les pixels se touchent */
-    gap: 0; 
-}
-
-.pixel {
-    aspect-ratio: 1/1;
-    width: 100%;
-    cursor: crosshair;
-}
-#controls {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    margin-bottom: 1em;
-}
-
-#coords-display {
-    font-family: monospace;
-    font-size: 0.9em;
-    color: #555;
-    min-width: 6em;
-    display: inline-block;
+    /*TODO: yous js must set grid-template-columns to repeat(n, 1fr)
+      where n is the number of columns in the grid*/
+    /* 80% of the viewport width */
+    width: 80vw;
+    &>.pixel {
+        aspect-ratio: 1/1;
+    }
+    margin-bottom: 1rem;
 }
