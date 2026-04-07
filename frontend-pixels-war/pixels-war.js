@@ -150,33 +150,39 @@ document.addEventListener("DOMContentLoaded",
         // now that we have the API-KEY,
         // write a refresh(...) function that updates the grid
         // and attach this function to the refresh button click
-        async function refresh() {
-            if (!MAP_ID || !API_KEY) {
-                console.log("Impossible de refresh : pas de MAP_ID ou API_KEY");
-                return;
-            }
+        async function refresh(ni, nj) {
+            if (!MAP_ID || !API_KEY) return;
 
-            const res = await fetch(`/api/v2/${MAP_ID}/deltas`, {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "API-KEY": API_KEY        // ← ajout ici
+            try {
+                const response = await fetch(`/api/v2/updates/${MAP_ID}`, {
+                    method: "GET", // On précise GET explicitement
+                    headers: { 
+                        "API-KEY": API_KEY,
+                        "Accept": "application/json" 
+                    }
+                });
+
+                if (response.status === 422) {
+                    console.error("Erreur 422 : Le serveur refuse les paramètres envoyés. Vérifiez le MAP_ID.");
+                    return;
                 }
-            });
 
-            if (!res.ok) {
-                alert(`Erreur lors du refresh : ${res.status} ${res.statusText}`);
-                return;
+                if (!response.ok) throw new Error(`Erreur ${response.status}`);
+
+                const changes = await response.json();
+                
+                // Application des changements
+                const pixels = document.getElementById("grid").children;
+                for (const [i, j, r, g, b] of changes) {
+                    const index = i * nj + j;
+                    if (pixels[index]) {
+                        pixels[index].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                    }
+                }
+            } catch (err) {
+                console.error("Erreur lors du refresh :", err);
             }
-
-            const json = await res.json();
-            
-            console.log("réponse deltas:", json)
-            apply_changes(NI, NJ, json.deltas);
-
-            // json contient : ni, nj, changes
-            apply_changes(NI, NJ, json.changes);
-}
+        }
 
 
         //TODO:
