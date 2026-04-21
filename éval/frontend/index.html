@@ -8,21 +8,27 @@
 </head>
 <body>
 
-    <div id="sidebar">
-        <div class="sidebar-header">Mes Discussions</div>
-        <ul class="chat-list" id="chat-list">
-            </ul>
+    <div id="login-view">
+        <h2>Bienvenue</h2>
+        <input type="text" id="username-input" placeholder="Entrez votre nom...">
+        <button id="login-btn">Se connecter</button>
     </div>
 
-    <div id="main-chat">
-        <div class="chat-header" id="current-chat-name">Sélectionnez une discussion</div>
-        
-        <div class="messages-container" id="messages-container">
-            </div>
+    <div id="app-view">
+        <div id="sidebar">
+            <div class="sidebar-header">Salons</div>
+            <ul class="chat-list" id="chat-list"></ul>
+        </div>
 
-        <div class="input-area">
-            <input type="text" id="message-input" placeholder="Taper un message..." autocomplete="off">
-            <button id="send-btn">Envoyer</button>
+        <div id="main-chat">
+            <div class="chat-header" id="current-chat-name"></div>
+            
+            <div class="messages-container" id="messages-container">Séléctionnez un salon</div>
+
+            <div class="input-area">
+                <input type="text" id="message-input" placeholder="Taper un message..." autocomplete="off">
+                <button id="send-btn">Envoyer</button>
+            </div>
         </div>
     </div>
 

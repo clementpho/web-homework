@@ -106,3 +106,32 @@ body {
 .input-area button:hover {
     background-color: #008f6f;
 }
+#login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+#login-view input {
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+#login-view button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: #00a884;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#app-view {
+    display: none;
+    width: 100%;
+    height: 100vh;
+}
